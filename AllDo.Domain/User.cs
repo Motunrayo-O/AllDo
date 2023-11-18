@@ -1,4 +1,4 @@
-namespace TodoApp.Domain;
+namespace AllDo.Domain;
 
 public record User(string Name)
 {
