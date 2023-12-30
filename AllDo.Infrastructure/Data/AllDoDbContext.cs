@@ -15,4 +15,5 @@ public class AllDoDbContext : DbContext
     {
         optionsBuilder.UseSqlite("Data Source=AllDo.db");
     }
+
 }
