@@ -16,4 +16,8 @@ public class AllDoDbContext : DbContext
         optionsBuilder.UseSqlite("Data Source=AllDo.db");
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        SeedData.Seed(modelBuilder);
+    }
 }
