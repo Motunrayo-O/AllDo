@@ -31,12 +31,12 @@ public class BugRepository : TodoRepository<Bug>
     {
         var result = await Context.Bugs.SingleAsync(b => b.Id == id);
 
-        return DataToDomainMapping.MapTodoFromData<Models.Bug, Bug>(result);
+        return DataToDTOMapping.MapToDTO<Models.Bug, Bug>(result);
     }
 
     private async Task CreateBugAsync(Bug item, Models.User createdBy)
     {
-        var bugToCreate = DomainToDataMapping.MapTodoFromDomain<Bug, Models.Bug>(item);
+        var bugToCreate = DTOToDataMapping.MapToData<Bug, Models.Bug>(item);
         await SetParentAsync(bugToCreate, item);
 
         bugToCreate.CreatedBy = createdBy;

@@ -2,9 +2,9 @@ using AllDo.Infrastructure.Data.Models;
 
 namespace AllDo.Infrastructure.Data;
 
-public class DataToDomainMapping
+public class DataToDTOMapping
 {
-    public static TTo MapTodoFromData<TFrom, TTo>(TFrom input)
+    public static TTo MapToDTO<TFrom, TTo>(TFrom input)
         where TFrom : Data.Models.Todo
         where TTo : Domain.Todo
     {

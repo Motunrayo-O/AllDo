@@ -17,14 +17,14 @@ public abstract class TodoRepository<T> : IRepository<T> where T : TodoTask
     public virtual async Task<IEnumerable<T>> AllAsync()
     {
         return await Context.TodoTasks.Where(t => !t.IsDeleted).Include(t => t.CreatedBy).Include(t => t.Parent)
-            .Select(t => DataToDomainMapping.MapTodoFromData<Models.TodoTask, T>(t))
+            .Select(t => DataToDTOMapping.MapToDTO<Models.TodoTask, T>(t))
             .ToArrayAsync();
     }
 
     public virtual async Task<T> FindbyAsync(string value)
     {
         var task = await Context.TodoTasks.SingleAsync(t => t.Title == value);
-        return DataToDomainMapping.MapTodoFromData<Models.TodoTask, T>(task);
+        return DataToDTOMapping.MapToDTO<Models.TodoTask, T>(task);
     }
 
     public async Task SaveChangesAsync()
@@ -46,7 +46,7 @@ public abstract class TodoRepository<T> : IRepository<T> where T : TodoTask
 
         if (bugDTO.Parent is not null)
         {
-            var parentToCreate = DomainToDataMapping.MapTodoFromDomain<Domain.Bug, Models.Bug>(bugDTO);
+            var parentToCreate = DTOToDataMapping.MapToData<Domain.Bug, Models.Bug>(bugDTO);
             await Context.AddAsync(parentToCreate);
             existingParent ??= parentToCreate;
 
