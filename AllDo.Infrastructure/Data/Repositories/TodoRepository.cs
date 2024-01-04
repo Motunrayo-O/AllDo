@@ -54,4 +54,22 @@ public abstract class TodoRepository<T> : IRepository<T> where T : TodoTask
         bugToCreate.Parent = existingParent;
     }
 
+    protected async Task SetParentAsync(Models.Feature featureToCreate, Feature featureDTO)
+    {
+        Data.Models.TodoTask? existingParent = null;
+        if (featureDTO.Parent is not null)
+        {
+            existingParent = await Context.Bugs.FirstOrDefaultAsync(b => b.Id == featureDTO.Parent.Id);
+        }
+
+        if (featureDTO.Parent is not null)
+        {
+            var parentToCreate = DTOToDataMapping.MapToData<Domain.Feature, Models.Feature>(featureDTO);
+            await Context.AddAsync(parentToCreate);
+            existingParent ??= parentToCreate;
+
+        }
+        featureToCreate.Parent = existingParent;
+    }
+
 }
