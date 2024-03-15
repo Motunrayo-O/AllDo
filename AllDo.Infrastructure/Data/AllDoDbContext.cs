@@ -20,4 +20,12 @@ public class AllDoDbContext : DbContext
     {
         SeedData.Seed(modelBuilder);
     }
+
+    public static void EnsureCreated()
+    {
+        using (var context = new AllDoDbContext())
+        {
+            context.Database.EnsureCreated();
+        }
+    }
 }

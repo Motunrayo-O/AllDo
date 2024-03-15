@@ -24,8 +24,7 @@ public static class SeedData
                 AffectedUsers = 5,
                 AffectedVersion = "1.2",
                 CreatedDate = DateTimeOffset.UtcNow.AddDays(-10),
-                CreatedBy = users[0]
-
+                CreatedById = users[0].Id
             }
         });
     }
