@@ -6,4 +6,5 @@ public class Feature : TodoTask
     public string Component { get; set; } = default!;
     public int Priority { get; set; }
     public User AssignedTo { get; set; } = default!;
+    public Guid AssignedToId { get; set; } = default!;
 }

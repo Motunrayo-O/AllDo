@@ -3,6 +3,7 @@ using System;
 using AllDo.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AllDo.Infrastructure.Migrations
 {
     [DbContext(typeof(AllDoDbContext))]
-    partial class AllDoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240315211016_SeedData")]
+    partial class SeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.14");
@@ -96,27 +99,27 @@ namespace AllDo.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0eabde08-5118-4153-8b56-df78cd85a1d3"),
+                            Id = new Guid("9ef0e7ec-5336-4242-8a4b-64b081078ca3"),
                             Name = "Jason Derulo"
                         },
                         new
                         {
-                            Id = new Guid("cbc116d6-926e-4eae-aa65-84af773f1080"),
+                            Id = new Guid("392731cb-8a70-4719-b63c-0a30951d7679"),
                             Name = "Robyn Fenty"
                         },
                         new
                         {
-                            Id = new Guid("0d4435d9-6e04-43fa-8da1-ba1c7588bc13"),
+                            Id = new Guid("ec0c4be6-6054-4cf4-a7f8-6c59e5f178ca"),
                             Name = "Paul Dyson"
                         },
                         new
                         {
-                            Id = new Guid("3b060441-bece-4d89-9291-19471e3b76e6"),
+                            Id = new Guid("f5f362f6-4bb2-4671-bc42-0bdaceac1563"),
                             Name = "Tiwa Savage"
                         },
                         new
                         {
-                            Id = new Guid("406a7c7c-3173-4902-8d71-e8f4e0391edc"),
+                            Id = new Guid("6ef8dd83-a5f5-4850-b32d-5fabe3b68d60"),
                             Name = "Mohbad "
                         });
                 });
@@ -149,9 +152,6 @@ namespace AllDo.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("ImageId")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("Severity")
                         .HasColumnType("INTEGER");
 
@@ -171,13 +171,13 @@ namespace AllDo.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("55cb849a-d82b-47ed-949f-a6048a20f7be"),
-                            CreatedById = new Guid("0eabde08-5118-4153-8b56-df78cd85a1d3"),
-                            CreatedDate = new DateTimeOffset(new DateTime(2024, 3, 5, 22, 16, 30, 590, DateTimeKind.Unspecified).AddTicks(4050), new TimeSpan(0, 0, 0, 0, 0)),
+                            Id = new Guid("89657dc5-6ff1-43ce-844e-783e5cd9e94a"),
+                            CreatedById = new Guid("9ef0e7ec-5336-4242-8a4b-64b081078ca3"),
+                            CreatedDate = new DateTimeOffset(new DateTime(2024, 3, 5, 21, 10, 16, 622, DateTimeKind.Unspecified).AddTicks(6180), new TimeSpan(0, 0, 0, 0, 0)),
                             IsCompleted = false,
                             IsDeleted = false,
-                            Title = "Fix Alignment",
-                            DueDate = new DateTimeOffset(new DateTime(2024, 3, 19, 22, 16, 30, 590, DateTimeKind.Unspecified).AddTicks(4030), new TimeSpan(0, 0, 0, 0, 0)),
+                            Title = "Fix Alignment!",
+                            DueDate = new DateTimeOffset(new DateTime(2024, 3, 19, 21, 10, 16, 622, DateTimeKind.Unspecified).AddTicks(6160), new TimeSpan(0, 0, 0, 0, 0)),
                             AffectedUsers = 5,
                             AffectedVersion = "1.2",
                             Description = "Alignment on second wizard screen uneven",
@@ -185,13 +185,13 @@ namespace AllDo.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a1b39edd-92bd-49f8-9d0b-16f4c4ac36f8"),
-                            CreatedById = new Guid("cbc116d6-926e-4eae-aa65-84af773f1080"),
-                            CreatedDate = new DateTimeOffset(new DateTime(2024, 3, 14, 22, 16, 30, 590, DateTimeKind.Unspecified).AddTicks(4060), new TimeSpan(0, 0, 0, 0, 0)),
+                            Id = new Guid("1f4da944-7fe6-4636-89d7-60acaa684410"),
+                            CreatedById = new Guid("392731cb-8a70-4719-b63c-0a30951d7679"),
+                            CreatedDate = new DateTimeOffset(new DateTime(2024, 3, 14, 21, 10, 16, 622, DateTimeKind.Unspecified).AddTicks(6190), new TimeSpan(0, 0, 0, 0, 0)),
                             IsCompleted = false,
                             IsDeleted = false,
                             Title = "Splash Screen Exception",
-                            DueDate = new DateTimeOffset(new DateTime(2024, 3, 16, 22, 16, 30, 590, DateTimeKind.Unspecified).AddTicks(4060), new TimeSpan(0, 0, 0, 0, 0)),
+                            DueDate = new DateTimeOffset(new DateTime(2024, 3, 16, 21, 10, 16, 622, DateTimeKind.Unspecified).AddTicks(6190), new TimeSpan(0, 0, 0, 0, 0)),
                             AffectedUsers = 450,
                             AffectedVersion = "1.2",
                             Description = "Array Index out of bounds ecxeption",
@@ -199,13 +199,13 @@ namespace AllDo.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("720b2e86-0626-458b-8fab-0cf8381ef6cb"),
-                            CreatedById = new Guid("406a7c7c-3173-4902-8d71-e8f4e0391edc"),
-                            CreatedDate = new DateTimeOffset(new DateTime(2024, 3, 5, 22, 16, 30, 590, DateTimeKind.Unspecified).AddTicks(4080), new TimeSpan(0, 0, 0, 0, 0)),
+                            Id = new Guid("69ee876a-2852-4c17-b5d4-1a680e09d32e"),
+                            CreatedById = new Guid("6ef8dd83-a5f5-4850-b32d-5fabe3b68d60"),
+                            CreatedDate = new DateTimeOffset(new DateTime(2024, 3, 5, 21, 10, 16, 622, DateTimeKind.Unspecified).AddTicks(6210), new TimeSpan(0, 0, 0, 0, 0)),
                             IsCompleted = false,
                             IsDeleted = false,
                             Title = "Summary Calculations Wrong",
-                            DueDate = new DateTimeOffset(new DateTime(2024, 4, 2, 22, 16, 30, 590, DateTimeKind.Unspecified).AddTicks(4080), new TimeSpan(0, 0, 0, 0, 0)),
+                            DueDate = new DateTimeOffset(new DateTime(2024, 4, 2, 21, 10, 16, 622, DateTimeKind.Unspecified).AddTicks(6210), new TimeSpan(0, 0, 0, 0, 0)),
                             AffectedUsers = 200,
                             AffectedVersion = "1.2",
                             Description = "Incorrect Result calculated for Interest repayments",
@@ -238,56 +238,56 @@ namespace AllDo.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("eaf722ef-06c1-4861-92fd-f0977d4120da"),
-                            CreatedById = new Guid("0eabde08-5118-4153-8b56-df78cd85a1d3"),
-                            CreatedDate = new DateTimeOffset(new DateTime(2024, 3, 5, 22, 16, 30, 590, DateTimeKind.Unspecified).AddTicks(4110), new TimeSpan(0, 0, 0, 0, 0)),
+                            Id = new Guid("9319f7a3-a051-4af9-b295-e91c077bb0fa"),
+                            CreatedById = new Guid("9ef0e7ec-5336-4242-8a4b-64b081078ca3"),
+                            CreatedDate = new DateTimeOffset(new DateTime(2024, 3, 5, 21, 10, 16, 622, DateTimeKind.Unspecified).AddTicks(6240), new TimeSpan(0, 0, 0, 0, 0)),
                             IsCompleted = false,
                             IsDeleted = false,
                             Title = "Fractional Interest Rates",
-                            DueDate = new DateTimeOffset(new DateTime(2024, 3, 19, 22, 16, 30, 590, DateTimeKind.Unspecified).AddTicks(4100), new TimeSpan(0, 0, 0, 0, 0)),
-                            AssignedToId = new Guid("0d4435d9-6e04-43fa-8da1-ba1c7588bc13"),
+                            DueDate = new DateTimeOffset(new DateTime(2024, 3, 19, 21, 10, 16, 622, DateTimeKind.Unspecified).AddTicks(6240), new TimeSpan(0, 0, 0, 0, 0)),
+                            AssignedToId = new Guid("ec0c4be6-6054-4cf4-a7f8-6c59e5f178ca"),
                             Component = "Component 1",
                             Description = "Tart brownie macaroon wafer bear claw tiramisu apple pie. Cake soufflé cotton candy pudding cheesecake carrot cake cupcake. Danish ice cream chocolate bar sugar plum sugar plum lemon drops. Danish I love donut lemon drops chupa chups. Cake cake marzipan icing cake marzipan oat cake. Cotton candy liquorice toffee caramels wafer jelly beans fruitcake cotton candy. Toffee soufflé chupa chups powder candy gummi bears. Cookie dessert pudding I love gingerbread bear claw fruitcake candy.",
                             Priority = 0
                         },
                         new
                         {
-                            Id = new Guid("e2c875b6-61b8-4c23-9ea0-1716e7a58893"),
-                            CreatedById = new Guid("cbc116d6-926e-4eae-aa65-84af773f1080"),
-                            CreatedDate = new DateTimeOffset(new DateTime(2024, 3, 14, 22, 16, 30, 590, DateTimeKind.Unspecified).AddTicks(4120), new TimeSpan(0, 0, 0, 0, 0)),
+                            Id = new Guid("b9137577-6fc0-4847-8ad5-4f26c806cd2a"),
+                            CreatedById = new Guid("392731cb-8a70-4719-b63c-0a30951d7679"),
+                            CreatedDate = new DateTimeOffset(new DateTime(2024, 3, 14, 21, 10, 16, 622, DateTimeKind.Unspecified).AddTicks(6250), new TimeSpan(0, 0, 0, 0, 0)),
                             IsCompleted = false,
                             IsDeleted = false,
                             Title = "Advisor Insights",
-                            DueDate = new DateTimeOffset(new DateTime(2024, 3, 16, 22, 16, 30, 590, DateTimeKind.Unspecified).AddTicks(4120), new TimeSpan(0, 0, 0, 0, 0)),
-                            AssignedToId = new Guid("0d4435d9-6e04-43fa-8da1-ba1c7588bc13"),
+                            DueDate = new DateTimeOffset(new DateTime(2024, 3, 16, 21, 10, 16, 622, DateTimeKind.Unspecified).AddTicks(6250), new TimeSpan(0, 0, 0, 0, 0)),
+                            AssignedToId = new Guid("ec0c4be6-6054-4cf4-a7f8-6c59e5f178ca"),
                             Component = "Component 2",
                             Description = "Gingerbread cupcake carrot cake dragée chocolate bar chupa chups. Lemon drops cheesecake jelly-o I love dessert ice cream. Sugar plum cheesecake topping candy pie pastry. I love sugar plum bonbon dragée macaroon I love I love.",
                             Priority = 0
                         },
                         new
                         {
-                            Id = new Guid("8bb33ab9-f8bc-4698-b302-29b8a1c661f1"),
-                            CreatedById = new Guid("406a7c7c-3173-4902-8d71-e8f4e0391edc"),
-                            CreatedDate = new DateTimeOffset(new DateTime(2024, 3, 5, 22, 16, 30, 590, DateTimeKind.Unspecified).AddTicks(4130), new TimeSpan(0, 0, 0, 0, 0)),
+                            Id = new Guid("afb3b228-5f6b-456f-abf2-600ce1a7ebf9"),
+                            CreatedById = new Guid("6ef8dd83-a5f5-4850-b32d-5fabe3b68d60"),
+                            CreatedDate = new DateTimeOffset(new DateTime(2024, 3, 5, 21, 10, 16, 622, DateTimeKind.Unspecified).AddTicks(6270), new TimeSpan(0, 0, 0, 0, 0)),
                             IsCompleted = false,
                             IsDeleted = false,
                             Title = "User Preferences",
-                            DueDate = new DateTimeOffset(new DateTime(2024, 4, 2, 22, 16, 30, 590, DateTimeKind.Unspecified).AddTicks(4130), new TimeSpan(0, 0, 0, 0, 0)),
-                            AssignedToId = new Guid("0d4435d9-6e04-43fa-8da1-ba1c7588bc13"),
+                            DueDate = new DateTimeOffset(new DateTime(2024, 4, 2, 21, 10, 16, 622, DateTimeKind.Unspecified).AddTicks(6270), new TimeSpan(0, 0, 0, 0, 0)),
+                            AssignedToId = new Guid("ec0c4be6-6054-4cf4-a7f8-6c59e5f178ca"),
                             Component = "Component 3",
                             Description = "Marzipan candy croissant carrot cake sugar plum marzipan jujubes marshmallow sugar plum. Tart marshmallow halvah powder jelly-o wafer macaroo",
                             Priority = 0
                         },
                         new
                         {
-                            Id = new Guid("12383f05-427d-4be1-ad51-d268b328626d"),
-                            CreatedById = new Guid("406a7c7c-3173-4902-8d71-e8f4e0391edc"),
-                            CreatedDate = new DateTimeOffset(new DateTime(2024, 3, 5, 22, 16, 30, 590, DateTimeKind.Unspecified).AddTicks(4150), new TimeSpan(0, 0, 0, 0, 0)),
+                            Id = new Guid("e5d34104-6a81-4e63-8859-4808e30f7b3b"),
+                            CreatedById = new Guid("6ef8dd83-a5f5-4850-b32d-5fabe3b68d60"),
+                            CreatedDate = new DateTimeOffset(new DateTime(2024, 3, 5, 21, 10, 16, 622, DateTimeKind.Unspecified).AddTicks(6280), new TimeSpan(0, 0, 0, 0, 0)),
                             IsCompleted = false,
                             IsDeleted = false,
                             Title = "Split Payments",
-                            DueDate = new DateTimeOffset(new DateTime(2024, 4, 2, 22, 16, 30, 590, DateTimeKind.Unspecified).AddTicks(4150), new TimeSpan(0, 0, 0, 0, 0)),
-                            AssignedToId = new Guid("0d4435d9-6e04-43fa-8da1-ba1c7588bc13"),
+                            DueDate = new DateTimeOffset(new DateTime(2024, 4, 2, 21, 10, 16, 622, DateTimeKind.Unspecified).AddTicks(6280), new TimeSpan(0, 0, 0, 0, 0)),
+                            AssignedToId = new Guid("ec0c4be6-6054-4cf4-a7f8-6c59e5f178ca"),
                             Component = "Component 2",
                             Description = "Shortbread shortbread I love cake chocolate marzipan.. Tart marshmallow halvah powder jelly-o wafer macaroo",
                             Priority = 0
