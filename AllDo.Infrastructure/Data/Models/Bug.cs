@@ -11,6 +11,4 @@ public class Bug : TodoTask
     public int AffectedUsers { get; set; }
     public virtual ICollection<Image> Images { get; set; } = default!;
 
-    //TODO: many to many relationship?
-    public Guid? ImageId { get; set; } = default;
 }
