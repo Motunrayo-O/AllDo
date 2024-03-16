@@ -479,3 +479,5 @@ $RECYCLE.BIN/
 # React Web Project
 alldo.reactweb/*
 alldo.wpflib/*
+AllDo.Infrastructure/AllDo.db-shm
+AllDo.Infrastructure/AllDo.db-wal

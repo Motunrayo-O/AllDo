@@ -34,6 +34,15 @@ public class BugRepository : TodoRepository<Bug>
         return DataToDTOMapping.MapToDTO<Models.Bug, Bug>(result);
     }
 
+    public async override Task<IEnumerable<Bug>> AllAsync()
+    {
+        var result = await Context.Bugs.Where(t => !t.IsDeleted).Include(t => t.CreatedBy).Include(t => t.Parent)
+            .Select(t => DataToDTOMapping.MapToDTO<Models.Bug, Bug>(t))
+            .ToArrayAsync();
+
+        return result;
+    }
+
     private async Task CreateBugAsync(Bug item, Models.User createdBy)
     {
         var bugToCreate = DTOToDataMapping.MapToData<Bug, Models.Bug>(item);
