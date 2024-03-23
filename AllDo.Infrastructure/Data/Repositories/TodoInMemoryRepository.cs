@@ -21,6 +21,11 @@ public class TodoInMemoryRepository<T> : IRepository<T> where T : Todo
         return Task.FromResult<IEnumerable<T>>(items);
     }
 
+    public Task<bool> DeleteAsync(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task<T> FindbyAsync(string value)
     {
         var result = Items.Values.First(i => i.Title == value);

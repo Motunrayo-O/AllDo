@@ -25,7 +25,11 @@ public class BugsController : ControllerBase
     [Route("{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {
-        return Ok(await repository.GetAsync(id));
+        var result = await repository.GetAsync(id);
+        if (result is not null)
+            return Ok();
+
+        return NotFound();
     }
 
     [HttpPost]
@@ -33,7 +37,16 @@ public class BugsController : ControllerBase
     {
         await repository.AddAsync(bugToCreate);
 
-        // return CreatedAtRoute(nameof(GetAll), null, bugToCreate);
-        return Ok();
+        return CreatedAtAction(nameof(GetById), new { id = bugToCreate.Id }, bugToCreate);
     }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var result = await repository.DeleteAsync(id);
+        if (!result) return BadRequest("Couldn't delete");
+
+        return NoContent();
+    }
+
 }

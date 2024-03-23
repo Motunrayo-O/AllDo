@@ -72,4 +72,16 @@ public abstract class TodoRepository<T> : IRepository<T> where T : TodoTask
         featureToCreate.Parent = existingParent;
     }
 
+    public async Task<bool> DeleteAsync(Guid id)
+    {
+        var task = await Context.TodoTasks.FindAsync(id);
+        if (task is not null)
+        {
+            task.IsDeleted = true;
+            await SaveChangesAsync();
+            return true;
+        }
+        return false;
+    }
+
 }

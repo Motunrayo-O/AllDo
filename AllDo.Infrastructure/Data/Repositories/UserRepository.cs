@@ -54,4 +54,9 @@ public class UserRepository : IRepository<User>
     {
         await Context.SaveChangesAsync();
     }
+
+    public Task<bool> DeleteAsync(Guid id)
+    {
+        throw new NotImplementedException();
+    }
 }

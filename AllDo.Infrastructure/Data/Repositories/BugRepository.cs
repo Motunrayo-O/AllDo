@@ -29,11 +29,13 @@ public class BugRepository : TodoRepository<Bug>
         await SaveChangesAsync();
     }
 
-    public override async Task<Bug> GetAsync(Guid id)
+    public override async Task<Bug?> GetAsync(Guid id)
     {
-        var result = await Context.Bugs.SingleAsync(b => b.Id == id);
+        var result = await Context.Bugs.FindAsync(id);
+        if(result is not null)
+            return DataToDTOMapping.MapToDTO<Models.Bug, Bug>(result);
 
-        return DataToDTOMapping.MapToDTO<Models.Bug, Bug>(result);
+        return null;
     }
 
     public async override Task<IEnumerable<Bug>> AllAsync()
@@ -69,6 +71,4 @@ public class BugRepository : TodoRepository<Bug>
 
         Context.Bugs.Update(existingBug);
     }
-
-
 }
