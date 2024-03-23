@@ -1,7 +1,6 @@
 using AllDo.Domain;
 using AllDo.Infrastructure.Data;
 using AllDo.Infrastructure.Data.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,12 +9,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+
 builder.Services.AddDbContext<AllDoDbContext>();
 builder.Services.AddScoped<IRepository<Bug>, BugRepository>();
 builder.Services.AddScoped<IRepository<Feature>, FeatureRepository>();
 builder.Services.AddScoped<IRepository<TodoTask>, TodoTaskRepository>();
 
-builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -29,7 +31,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.MapControllers();
 
- AllDoDbContext.EnsureCreated();
+AllDoDbContext.EnsureCreated();
 
 // app.MapGet("/todos", async (IRepository<TodoTask> repo) => await repo.AllAsync()).Produces<TodoTask[]>(StatusCodes.Status200OK);
 

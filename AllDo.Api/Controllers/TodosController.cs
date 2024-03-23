@@ -16,7 +16,7 @@ public class TodosController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async virtual Task<IActionResult> GetAll()
     {
         return Ok(await repository.AllAsync());
     }

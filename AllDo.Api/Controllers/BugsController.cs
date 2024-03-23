@@ -20,4 +20,20 @@ public class BugsController : ControllerBase
     {
         return Ok(await repository.AllAsync());
     }
+
+    [HttpGet]
+    [Route("{id}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        return Ok(await repository.GetAsync(id));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] Bug bugToCreate)
+    {
+        await repository.AddAsync(bugToCreate);
+
+        // return CreatedAtRoute(nameof(GetAll), null, bugToCreate);
+        return Ok();
+    }
 }

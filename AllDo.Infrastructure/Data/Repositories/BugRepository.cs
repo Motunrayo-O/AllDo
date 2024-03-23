@@ -25,6 +25,8 @@ public class BugRepository : TodoRepository<Bug>
         {
             await CreateBugAsync(item, createdBy);
         }
+
+        await SaveChangesAsync();
     }
 
     public override async Task<Bug> GetAsync(Guid id)

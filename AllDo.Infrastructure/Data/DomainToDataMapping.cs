@@ -62,7 +62,7 @@ public class DTOToDataMapping
             IsDeleted = bug.IsDeleted,
             DueDate = bug.DueDate,
             Description = bug.Description,
-            AssignedTo = MapUser(bug.AssignedTo),
+            AssignedTo = bug.AssignedTo != null ? MapUser(bug.AssignedTo) : null,
             Severity = (Models.Severity)bug.Severity,
             AffectedUsers = bug.AffectedUsers,
             AffectedVersion = bug.AffectedVersion,

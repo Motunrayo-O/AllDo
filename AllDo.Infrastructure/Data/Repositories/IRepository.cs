@@ -1,4 +1,7 @@
-﻿namespace AllDo.Infrastructure.Data.Repositories;
+﻿
+using AllDo.Domain;
+
+namespace AllDo.Infrastructure.Data.Repositories;
 
 public interface IRepository<T>
 {

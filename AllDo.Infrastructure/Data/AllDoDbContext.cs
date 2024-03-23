@@ -13,8 +13,8 @@ public class AllDoDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        // optionsBuilder.UseSqlite("Data Source=AllDo.db");
-        optionsBuilder.UseSqlite("Data Source=/Users/motunrayoogunyinka/Documents/Training/dotnet/AllDo/AllDo.Infrastructure/AllDo.db");
+        optionsBuilder.UseSqlite("Data Source=AllDo.db");
+        // optionsBuilder.UseSqlite("Data Source=/Users/motunrayoogunyinka/Documents/Training/dotnet/AllDo/AllDo.Infrastructure/AllDo.db");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
