@@ -35,6 +35,8 @@ public class FeatureRepository : TodoRepository<FeatureDto>
         await SetParentAsync(exisitingFeature, featureDTO);
 
         Context.Features.Update(exisitingFeature);
+        await Context.SaveChangesAsync();
+
     }
 
     private async Task CreateFeatureAsync(FeatureDto featureDTO, Models.User user)
@@ -51,6 +53,7 @@ public class FeatureRepository : TodoRepository<FeatureDto>
 
         await SetParentAsync(featureToAdd, featureDTO);
         await Context.Features.AddAsync(featureToAdd);
+        await Context.SaveChangesAsync();
 
     }
 
