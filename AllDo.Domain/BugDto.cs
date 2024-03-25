@@ -7,5 +7,5 @@ public enum Severity
     Minor,
     Irritating
 }
-public record BugDto(string Title, string Description, Severity Severity, string AffectedVersion,
-int AffectedUsers, UserDto CreatedBy, UserDto? AssignedTo, IEnumerable<Byte[]> Images) : TodoTaskDto(Title, DateTimeOffset.MinValue, CreatedBy);
+public record BugDto(string Title, string Description,  string AffectedVersion,
+int AffectedUsers, UserDto? AssignedTo, IEnumerable<Byte[]> Images,Severity Severity = Severity.Minor) : TodoTaskDto(Title, DateTimeOffset.MinValue);

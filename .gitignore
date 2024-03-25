@@ -481,4 +481,7 @@ alldo.reactweb/*
 alldo.wpflib/*
 AllDo.Infrastructure/AllDo.db-shm
 AllDo.Infrastructure/AllDo.db-wal
-AllDo.Api/AllDo.db
+AllDo.Api/AllDo.db*
+AllDo.Infrastructure/AllDo.db
+AllDo.Api/AllDo.db-shm
+AllDo.Api/AllDo.db-wal

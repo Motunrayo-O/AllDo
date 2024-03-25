@@ -22,7 +22,7 @@ public class DataToDTOMapping
 
     private static Domain.TodoTaskDto MapTask(Models.TodoTask task)
     {
-        return new Domain.TodoTaskDto(task.Title, task.DueDate, MapUser(task.CreatedBy))
+        return new Domain.TodoTaskDto(task.Title, task.DueDate)
         {
             Id = task.Id
         };
@@ -30,7 +30,7 @@ public class DataToDTOMapping
 
     private static Domain.FeatureDto MapFeature(Models.Feature feature)
     {
-        return new(feature.Title, feature.Description, feature.Component, feature.Priority, MapUser(feature.CreatedBy), MapUser(feature.AssignedTo))
+        return new(feature.Title, feature.Description, feature.Component, feature.Priority, MapUser(feature.AssignedTo))
         {
             Id = feature.Id,
             DueDate = feature.DueDate,
@@ -40,8 +40,7 @@ public class DataToDTOMapping
 
     private static Domain.BugDto MapBug(Models.Bug bug)
     {
-        return new(bug.Title, bug.Description, (Domain.Severity)bug.Severity, bug.AffectedVersion, bug.AffectedUsers,
-        MapUser(bug.CreatedBy), MapUser(bug.AssignedTo), bug.Images?.Select(image => Convert.FromBase64String(image.ImageData)).ToArray() ?? Enumerable.Empty<byte[]>())
+        return new(bug.Title, bug.Description,  bug.AffectedVersion, bug.AffectedUsers, MapUser(bug.AssignedTo), bug.Images?.Select(image => Convert.FromBase64String(image.ImageData)).ToArray() ?? Enumerable.Empty<byte[]>(), (Domain.Severity)bug.Severity)
         {
             Id = bug.Id,
             DueDate = bug.DueDate
