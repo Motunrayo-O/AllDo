@@ -6,19 +6,19 @@ public class DTOToDataMapping
 {
 
     public static TTo MapToData<TFrom, TTo>(TFrom input)
-        where TFrom : Domain.Todo
+        where TFrom : Domain.TodoDto
         where TTo : Models.Todo
     {
         return input switch
         {
-            Domain.Bug bug => MapBug(bug),
-            Domain.Feature feature => MapFeature(feature),
-            Domain.TodoTask task => MapTask(task),
+            Domain.BugDto bug => MapBug(bug),
+            Domain.FeatureDto feature => MapFeature(feature),
+            Domain.TodoTaskDto task => MapTask(task),
             _ => throw new NotImplementedException()
         } as TTo;
     }
 
-    private static TodoTask MapTask(Domain.TodoTask task)
+    private static TodoTask MapTask(Domain.TodoTaskDto task)
     {
         return new()
         {
@@ -32,7 +32,7 @@ public class DTOToDataMapping
         };
     }
 
-    private static Feature MapFeature(Domain.Feature feature)
+    private static Feature MapFeature(Domain.FeatureDto feature)
     {
         return new()
         {
@@ -50,7 +50,7 @@ public class DTOToDataMapping
         };
     }
 
-    private static Bug MapBug(Domain.Bug bug)
+    private static Bug MapBug(Domain.BugDto bug)
     {
         return new()
         {
@@ -70,7 +70,7 @@ public class DTOToDataMapping
         };
     }
 
-    public static User MapUser(Domain.User input)
+    public static User MapUser(Domain.UserDto input)
     {
         return new() { Id = input.Id, Name = input.Name };
     }

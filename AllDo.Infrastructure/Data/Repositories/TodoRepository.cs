@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AllDo.Infrastructure.Data.Repositories;
 
-public abstract class TodoRepository<T> : IRepository<T> where T : TodoTask
+public abstract class TodoRepository<T> : IRepository<T> where T : TodoTaskDto
 {
     protected AllDoDbContext Context { get; }
 
@@ -36,7 +36,7 @@ public abstract class TodoRepository<T> : IRepository<T> where T : TodoTask
 
     public abstract Task<T> GetAsync(Guid id);
 
-    protected async Task SetParentAsync(Models.Bug bugToCreate, Bug bugDTO)
+    protected async Task SetParentAsync(Models.Bug bugToCreate, BugDto bugDTO)
     {
         Data.Models.TodoTask? existingParent = null;
         if (bugDTO.Parent is not null)
@@ -46,7 +46,7 @@ public abstract class TodoRepository<T> : IRepository<T> where T : TodoTask
 
         if (bugDTO.Parent is not null)
         {
-            var parentToCreate = DTOToDataMapping.MapToData<Domain.Bug, Models.Bug>(bugDTO);
+            var parentToCreate = DTOToDataMapping.MapToData<Domain.BugDto, Models.Bug>(bugDTO);
             await Context.AddAsync(parentToCreate);
             existingParent ??= parentToCreate;
 
@@ -54,7 +54,7 @@ public abstract class TodoRepository<T> : IRepository<T> where T : TodoTask
         bugToCreate.Parent = existingParent;
     }
 
-    protected async Task SetParentAsync(Models.Feature featureToCreate, Feature featureDTO)
+    protected async Task SetParentAsync(Models.Feature featureToCreate, FeatureDto featureDTO)
     {
         Data.Models.TodoTask? existingParent = null;
         if (featureDTO.Parent is not null)
@@ -64,7 +64,7 @@ public abstract class TodoRepository<T> : IRepository<T> where T : TodoTask
 
         if (featureDTO.Parent is not null)
         {
-            var parentToCreate = DTOToDataMapping.MapToData<Domain.Feature, Models.Feature>(featureDTO);
+            var parentToCreate = DTOToDataMapping.MapToData<Domain.FeatureDto, Models.Feature>(featureDTO);
             await Context.AddAsync(parentToCreate);
             existingParent ??= parentToCreate;
 

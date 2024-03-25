@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AllDo.Infrastructure.Data.Repositories;
 
-public class UserRepository : IRepository<User>
+public class UserRepository : IRepository<UserDto>
 {
     public UserRepository(AllDoDbContext context)
     {
@@ -12,7 +12,7 @@ public class UserRepository : IRepository<User>
 
     private AllDoDbContext Context { get; }
 
-    public async Task AddAsync(User userDTO)
+    public async Task AddAsync(UserDto userDTO)
     {
         var existingUser = await Context.Users.FirstOrDefaultAsync(u => u.Id == userDTO.Id);
         if (existingUser is not null)
@@ -21,30 +21,30 @@ public class UserRepository : IRepository<User>
             CreateUserAsync(userDTO);
     }
 
-    private void UpdateUserAsync(Models.User existingUser, User dto)
+    private void UpdateUserAsync(Models.User existingUser, UserDto dto)
     {
         existingUser.Name = dto.Name;
         Context.Users.Update(existingUser);
     }
 
-    private async Task CreateUserAsync(User dto)
+    private async Task CreateUserAsync(UserDto dto)
     {
         Models.User user = new() { Name = dto.Name };
         await Context.Users.AddAsync(user);
     }
 
-    public async Task<IEnumerable<User>> AllAsync()
+    public async Task<IEnumerable<UserDto>> AllAsync()
     {
         return await Context.Users.Select(u => DataToDTOMapping.MapUser(u)).ToArrayAsync();
     }
 
-    public async Task<User> FindbyAsync(string value)
+    public async Task<UserDto> FindbyAsync(string value)
     {
         var user = await Context.Users.SingleAsync(u => u.Name == value);
         return DataToDTOMapping.MapUser(user);
     }
 
-    public async Task<User> GetAsync(Guid id)
+    public async Task<UserDto> GetAsync(Guid id)
     {
         var user = await Context.Users.SingleAsync(u => u.Id == id);
         return DataToDTOMapping.MapUser(user);

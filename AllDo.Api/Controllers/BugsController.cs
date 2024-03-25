@@ -8,9 +8,9 @@ namespace Api.Controllers;
 [ApiController]
 public class BugsController : ControllerBase
 {
-    private readonly IRepository<Bug> repository;
+    private readonly IRepository<BugDto> repository;
 
-    public BugsController(IRepository<Bug> repository)
+    public BugsController(IRepository<BugDto> repository)
     {
         this.repository = repository;
     }
@@ -33,7 +33,7 @@ public class BugsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] Bug bugToCreate)
+    public async Task<IActionResult> Create([FromBody] BugDto bugToCreate)
     {
         await repository.AddAsync(bugToCreate);
 

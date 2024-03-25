@@ -6,7 +6,7 @@ public class DataToDTOMapping
 {
     public static TTo MapToDTO<TFrom, TTo>(TFrom input)
         where TFrom : Data.Models.Todo
-        where TTo : Domain.Todo
+        where TTo : Domain.TodoDto
     {
         var model = input switch
         {
@@ -20,15 +20,15 @@ public class DataToDTOMapping
         return model;
     }
 
-    private static Domain.TodoTask MapTask(Models.TodoTask task)
+    private static Domain.TodoTaskDto MapTask(Models.TodoTask task)
     {
-        return new Domain.TodoTask(task.Title, task.DueDate, MapUser(task.CreatedBy))
+        return new Domain.TodoTaskDto(task.Title, task.DueDate, MapUser(task.CreatedBy))
         {
             Id = task.Id
         };
     }
 
-    private static Domain.Feature MapFeature(Models.Feature feature)
+    private static Domain.FeatureDto MapFeature(Models.Feature feature)
     {
         return new(feature.Title, feature.Description, feature.Component, feature.Priority, MapUser(feature.CreatedBy), MapUser(feature.AssignedTo))
         {
@@ -38,7 +38,7 @@ public class DataToDTOMapping
         };
     }
 
-    private static Domain.Bug MapBug(Models.Bug bug)
+    private static Domain.BugDto MapBug(Models.Bug bug)
     {
         return new(bug.Title, bug.Description, (Domain.Severity)bug.Severity, bug.AffectedVersion, bug.AffectedUsers,
         MapUser(bug.CreatedBy), MapUser(bug.AssignedTo), bug.Images?.Select(image => Convert.FromBase64String(image.ImageData)).ToArray() ?? Enumerable.Empty<byte[]>())
@@ -48,7 +48,7 @@ public class DataToDTOMapping
         };
     }
 
-    public static Domain.User MapUser(User input)
+    public static Domain.UserDto MapUser(User input)
     {
         if (input is null) return null!;
 

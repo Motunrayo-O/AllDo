@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AllDo.Infrastructure.Data.Repositories;
 
-public class FeatureRepository : TodoRepository<Feature>
+public class FeatureRepository : TodoRepository<FeatureDto>
 {
     public FeatureRepository(AllDoDbContext context) : base(context)
     {
     }
 
-    public override async Task AddAsync(Feature featureDTO)
+    public override async Task AddAsync(FeatureDto featureDTO)
     {
         var exisitingFeature = await Context.Features.FirstOrDefaultAsync(f => f.Id == featureDTO.Id);
         var createdBy = await Context.Users.SingleAsync(u => u.Id == featureDTO.CreatedBy.Id);
@@ -21,7 +21,7 @@ public class FeatureRepository : TodoRepository<Feature>
             await CreateFeatureAsync(featureDTO, createdBy);
     }
 
-    private async Task UpdateFeatureAsync(Models.Feature exisitingFeature, Feature featureDTO, Models.User user)
+    private async Task UpdateFeatureAsync(Models.Feature exisitingFeature, FeatureDto featureDTO, Models.User user)
     {
         exisitingFeature.AssignedTo = await Context.Users.SingleAsync(u => u.Id == featureDTO.Id);
         exisitingFeature.Title = featureDTO.Title;
@@ -37,7 +37,7 @@ public class FeatureRepository : TodoRepository<Feature>
         Context.Features.Update(exisitingFeature);
     }
 
-    private async Task CreateFeatureAsync(Feature featureDTO, Models.User user)
+    private async Task CreateFeatureAsync(FeatureDto featureDTO, Models.User user)
     {
         var featureToAdd = new Models.Feature()
         {
@@ -54,10 +54,10 @@ public class FeatureRepository : TodoRepository<Feature>
 
     }
 
-    public override async Task<Feature> GetAsync(Guid id)
+    public override async Task<FeatureDto> GetAsync(Guid id)
     {
         var result = await Context.Features.SingleAsync(f => f.Id == id);
 
-        return DataToDTOMapping.MapToDTO<Models.Feature, Feature>(result);
+        return DataToDTOMapping.MapToDTO<Models.Feature, FeatureDto>(result);
     }
 }

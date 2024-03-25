@@ -8,9 +8,9 @@ namespace Api.Controllers;
 [ApiController]
 public class TodosController : ControllerBase
 {
-    private readonly IRepository<TodoTask> repository;
+    private readonly IRepository<TodoTaskDto> repository;
 
-    public TodosController(IRepository<TodoTask> repository)
+    public TodosController(IRepository<TodoTaskDto> repository)
     {
         this.repository = repository;
     }

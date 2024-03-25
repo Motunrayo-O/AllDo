@@ -14,9 +14,9 @@ builder.Services.AddControllers().AddNewtonsoftJson(options => options.Serialize
 
 
 builder.Services.AddDbContext<AllDoDbContext>();
-builder.Services.AddScoped<IRepository<Bug>, BugRepository>();
-builder.Services.AddScoped<IRepository<Feature>, FeatureRepository>();
-builder.Services.AddScoped<IRepository<TodoTask>, TodoTaskRepository>();
+builder.Services.AddScoped<IRepository<BugDto>, BugRepository>();
+builder.Services.AddScoped<IRepository<FeatureDto>, FeatureRepository>();
+builder.Services.AddScoped<IRepository<TodoTaskDto>, TodoTaskRepository>();
 
 
 var app = builder.Build();

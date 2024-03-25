@@ -3,7 +3,7 @@ using AllDo.Domain;
 
 namespace AllDo.Infrastructure.Data.Repositories;
 
-public class TodoInMemoryRepository<T> : IRepository<T> where T : Todo
+public class TodoInMemoryRepository<T> : IRepository<T> where T : TodoDto
 {
     private ConcurrentDictionary<Guid, T> Items { get; } = new();
 
