@@ -84,4 +84,8 @@ public abstract class TodoRepository<T> : IRepository<T> where T : TodoTaskDto
         return false;
     }
 
+    public virtual Task<bool> AddBulkAsync(IEnumerable<T> items)
+    {
+        throw new NotImplementedException();
+    }
 }

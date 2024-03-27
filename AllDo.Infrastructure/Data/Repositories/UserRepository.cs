@@ -59,4 +59,9 @@ public class UserRepository : IRepository<UserDto>
     {
         throw new NotImplementedException();
     }
+
+    public Task<bool> AddBulkAsync(IEnumerable<UserDto> items)
+    {
+        throw new NotImplementedException();
+    }
 }

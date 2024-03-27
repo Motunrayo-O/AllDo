@@ -14,6 +14,11 @@ public class TodoInMemoryRepository<T> : IRepository<T> where T : TodoDto
         return Task.CompletedTask;
     }
 
+    public Task<bool> AddBulkAsync(IEnumerable<T> items)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task<IEnumerable<T>> AllAsync()
     {
         var items = Items.Values.ToArray();

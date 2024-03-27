@@ -29,6 +29,35 @@ public class BugRepository : TodoRepository<BugDto>
         await SaveChangesAsync();
     }
 
+    public override async Task<bool> AddBulkAsync(IEnumerable<BugDto> items)
+    {
+        try
+        {
+            var createdByUserIds = items.Select(i => i.CreatedBy.Id);
+            var createdByUserList = await Context.Users.Where(u => createdByUserIds.Contains(u.Id)).ToListAsync();
+            var userById = createdByUserList.ToDictionary(u => u.Id);
+
+            var bugsToCreate = new List<Models.Bug>();
+            foreach (var bugDto in items)
+            {
+                var bugToCreate = DTOToDataMapping.MapToData<BugDto, Models.Bug>(bugDto);
+                var createdBy = userById[bugDto.CreatedBy.Id];
+                // await SetParentAsync(bugToCreate, bugDto);
+
+                bugToCreate.CreatedBy = createdBy;
+                bugsToCreate.Add(bugToCreate);
+            }
+            await Context.Bugs.AddRangeAsync(bugsToCreate);
+            await SaveChangesAsync();
+        }
+        catch (System.Exception)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     public override async Task<BugDto?> GetAsync(Guid id)
     {
         var result = await Context.Bugs.FindAsync(id);
@@ -55,8 +84,6 @@ public class BugRepository : TodoRepository<BugDto>
         bugToCreate.CreatedBy = createdBy;
         await Context.Bugs.AddAsync(bugToCreate);
     }
-
-
 
     private async Task UpdateBugAsync(BugDto item, Models.Bug existingBug, Models.User createdBy)
     {

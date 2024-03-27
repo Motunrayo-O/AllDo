@@ -1,6 +1,7 @@
 using AllDo.Domain;
 using AllDo.Infrastructure.Data;
 using AllDo.Infrastructure.Data.Repositories;
+using AllDo.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Services.AddDbContext<AllDoDbContext>();
 builder.Services.AddScoped<IRepository<BugDto>, BugRepository>();
 builder.Services.AddScoped<IRepository<FeatureDto>, FeatureRepository>();
 builder.Services.AddScoped<IRepository<TodoTaskDto>, TodoTaskRepository>();
+builder.Services.AddScoped<ICsvProcessor, CsvProcessor>();
 
 
 var app = builder.Build();
